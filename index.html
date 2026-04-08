@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en-us">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,31 +16,52 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; transition: 0.3s; }
+
+        /* Botão de Idioma */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            background: var(--accent-color);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--bg-color);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+            transition: 0.2s;
+        }
+
+        .lang-btn:hover { transform: scale(1.05); }
 
         header {
-            min-height: 100vh; /* Mudado para min-height para garantir que caiba tudo em telas menores */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), 
-                        url('https://github.com/mhcns.png'); /* Placeholder do El Hero */
+            background: linear-gradient(rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.92)), 
+                        url('https://github.com/mhcns.png');
             background-size: cover;
             background-position: center;
-            padding: 40px 20px; /* Aumentado o padding vertical */
+            padding: 40px 20px;
         }
 
-        /* --- NOVA CLASSE CSS PARA A FOTO DE PERFIL --- */
         .profile-pic {
-            width: 150px; /* Tamanho da foto */
+            width: 150px;
             height: 150px;
-            border-radius: 50%; /* Torna a foto redonda */
-            border: 4px solid var(--accent-color); /* Borda azul clara */
-            object-fit: cover; /* Garante que a imagem não distorça */
-            margin-bottom: 20px; /* Espaço entre a foto e o nome */
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5); /* Efeito de brilho leve */
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
         }
 
         h1 { font-size: 3.5rem; margin-bottom: 0.5rem; color: var(--accent-color); }
@@ -56,11 +77,10 @@
 
         .social-links a:hover { color: var(--accent-color); }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
 
         h2 { font-size: 2rem; margin-bottom: 40px; border-left: 4px solid var(--accent-color); padding-left: 15px; }
 
-        /* Grade de Projetos */
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
         .project-card {
@@ -69,119 +89,158 @@
             overflow: hidden;
             transition: transform 0.3s;
             border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover { transform: translateY(-10px); }
 
-        .project-img { width: 100%; height: 180px; background: #334155; object-fit: cover; }
-
-        .project-info { padding: 20px; }
+        .project-info { padding: 20px; flex-grow: 1; }
         .project-info h3 { margin-bottom: 10px; color: var(--accent-color); }
         .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
-        .tag { background: #0ea5e9; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; }
+        .tag { background: #0ea5e9; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; color: white; }
 
-        /* Skills Section */
         .skills-container { display: flex; flex-wrap: wrap; gap: 15px; }
         .skill-item { background: var(--card-bg); padding: 10px 20px; border-radius: 8px; border: 1px solid var(--accent-color); }
 
-        footer { text-align: center; padding: 40px; color: var(--text-dim); font-size: 0.9rem; }
+        footer { text-align: center; padding: 40px; color: var(--text-dim); font-size: 0.9rem; border-top: 1px solid #1e293b; }
+
+        /* Lógica de exibição de idiomas */
+        [data-lang="en"] { display: none; }
 
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.2rem; }
         }
     </style>
 </head>
-<body>
+<body data-current-lang="pt">
+
+    <div class="lang-switcher">
+        <button class="lang-btn" onclick="toggleLanguage()">PT / EN</button>
+    </div>
 
     <header>
+        <img src="https://github.com/mhcns.png" alt="Marcelo Negri" class="profile-pic">
         <h1>MARCELO NEGRI</h1>
-        <p class="subtitle">Gameplay / Unity Programmer</p>
+        <p class="subtitle" data-lang="pt">Programador de Gameplay & Unity</p>
+        <p class="subtitle" data-lang="en">Gameplay & Unity Programmer</p>
+        
         <div class="social-links">
-            <a href="https://github.com/mhcns" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/marcelo-henrique-1833a9164/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://exupi.itch.io" target="_blank"><i class="fab fa-itch-io"></i></a>
-            <a href="mailto:marcelo.hcns@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/mhcns" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/marcelo-henrique-1833a9164/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://exupi.itch.io" target="_blank" title="Itch.io"><i class="fab fa-itch-io"></i></a>
+            <a href="mailto:marcelo.hcns@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
     </header>
 
     <div class="container">
-        <h2>Sobre Mim</h2>
-        <p style="font-size: 1.1rem; color: var(--text-dim);">
+        <h2 data-lang="pt">Sobre Mim</h2>
+        <h2 data-lang="en">About Me</h2>
+        
+        <p style="font-size: 1.1rem; color: var(--text-dim);" data-lang="pt">
             Desenvolvedor Unity focado em sistemas de <b>multiplayer</b> e mecânicas de gameplay. 
             Experiência sólida na criação de sistemas escaláveis, validação server-side e sincronização de rede. 
-            Fluente em C# e focado em performance.
+            Fluente em C# e focado em performance. Baseado em Recife - PE.
+        </p>
+        <p style="font-size: 1.1rem; color: var(--text-dim);" data-lang="en">
+            Unity Developer focused on <b>multiplayer</b> systems and gameplay mechanics. 
+            Solid experience building scalable systems, server-side validation, and network synchronization. 
+            Fluent in C# with a focus on performance. Based in Recife - Brazil.
         </p>
     </div>
 
     <div class="container">
-        <h2>Projetos em Destaque</h2>
+        <h2 data-lang="pt">Projetos em Destaque</h2>
+        <h2 data-lang="en">Featured Projects</h2>
+        
         <div class="project-grid">
             <div class="project-card">
                 <div class="project-info">
-                    <span class="tag">Profissional</span>
+                    <span class="tag" data-lang="pt">Profissional</span>
+                    <span class="tag" data-lang="en">Professional</span>
                     <h3>EL HERO</h3>
-                    <p>Desenvolvimento focado em multiplayer, sistema de hit-detection server-side e modos de jogo (Hero Clash).</p>
+                    <p data-lang="pt">Desenvolvimento focado em multiplayer, sistema de hit-detection server-side e modos de jogo (Hero Clash).</p>
+                    <p data-lang="en">Development focused on multiplayer, server-side hit-detection, and game modes (Hero Clash).</p>
                     <div class="tags">
                         <span class="tag">Unity</span> <span class="tag">C#</span> <span class="tag">Multiplayer</span>
                     </div>
-                    <a href="https://www.instagram.com/el_herogg/" style="color: var(--accent-color); text-decoration: none;">Ver Detalhes →</a>
+                    <a href="https://www.instagram.com/el_herogg/" target="_blank" style="color: var(--accent-color); text-decoration: none;" data-lang="pt">Ver Detalhes →</a>
+                    <a href="https://www.instagram.com/el_herogg/" target="_blank" style="color: var(--accent-color); text-decoration: none;" data-lang="en">View Details →</a>
                 </div>
             </div>
 
             <div class="project-card">
                 <div class="project-info">
-                    <span class="tag">College</span>
+                    <span class="tag" data-lang="pt">Acadêmico / Parceria</span>
+                    <span class="tag" data-lang="en">College / Partnership</span>
                     <h3>O Resgate de Farya</h3>
-                    <p>Sistemas de gameplay, lógica de inimigos, Boss Fight, puzzles.</p>
+                    <p data-lang="pt">Sistemas de gameplay, lógica de inimigos, Boss Fight e puzzles em parceria com VIU CINE.</p>
+                    <p data-lang="en">Gameplay systems, enemy logic, Boss Fights, and puzzles in partnership with VIU CINE.</p>
                     <div class="tags">
                         <span class="tag">Unity</span> <span class="tag">Boss AI</span> <span class="tag">Gameplay</span>
                     </div>
-                    <a href="https://exupi.itch.io/manamaue" target="_blank" style="color: var(--accent-color); text-decoration: none;">Jogar no Itch.io →</a>
+                    <a href="https://exupi.itch.io/manamaue" target="_blank" style="color: var(--accent-color); text-decoration: none;">Itch.io →</a>
                 </div>
             </div>
 
             <div class="project-card">
                 <div class="project-info">
-                    <span class="tag">College</span>
+                    <span class="tag" data-lang="pt">Acadêmico</span>
+                    <span class="tag" data-lang="en">College Project</span>
                     <h3>Magnetic Run</h3>
-                    <p>Programação de gameplay, level design e integração de áudio.</p>
+                    <p data-lang="pt">Programação de gameplay baseada em física, level design e integração de áudio.</p>
+                    <p data-lang="en">Physics-based gameplay programming, level design, and audio integration.</p>
                     <div class="tags">
                         <span class="tag">Unity</span> <span class="tag">Physics</span> <span class="tag">Audio</span>
                     </div>
-                    <a href="https://exupi.itch.io/magnetic-run" target="_blank" style="color: var(--accent-color); text-decoration: none;">Jogar no Itch.io →</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-info">
-                    <span class="tag">College</span>
-                    <h3>Manamauê</h3>
-                    <p>Sistemas de gameplay e lógica de Boss Fight.</p>
-                    <div class="tags">
-                        <span class="tag">Unity</span> <span class="tag">Boss AI</span> <span class="tag">Gameplay</span>
-                    </div>
-                    <a href="https://exupi.itch.io/manamaue" target="_blank" style="color: var(--accent-color); text-decoration: none;">Jogar no Itch.io →</a>
+                    <a href="https://exupi.itch.io/magnetic-run" target="_blank" style="color: var(--accent-color); text-decoration: none;">Itch.io →</a>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <h2>Stack Técnica</h2>
+        <h2 data-lang="pt">Stack Técnica</h2>
+        <h2 data-lang="en">Technical Stack</h2>
         <div class="skills-container">
             <div class="skill-item">Unity (C#)</div>
             <div class="skill-item">Unreal Engine</div>
             <div class="skill-item">Multiplayer Sync</div>
-            <div class="skill-item">Git </div>
-            <div class="skill-item">FMOD & Audio Integration</div>
+            <div class="skill-item">Git</div>
+            <div class="skill-item">FMOD</div>
             <div class="skill-item">UEFN</div>
         </div>
     </div>
 
     <footer>
-        <p>Recife - PE, BR | +55 (81) 99593-8000</p>
-        <p>© 2024 Marcelo Negri - Desenvolvido para Game Devs</p>
+        <p>Recife - PE, BR | marcelo.hcns@gmail.com</p>
+        <p data-lang="pt">© 2026 Marcelo Negri - Desenvolvedor de Jogos</p>
+        <p data-lang="en">© 2026 Marcelo Negri - Game Developer</p>
     </footer>
+
+    <script>
+        function toggleLanguage() {
+            const body = document.body;
+            const currentLang = body.getAttribute('data-current-lang');
+            const newLang = currentLang === 'pt' ? 'en' : 'pt';
+            
+            body.setAttribute('data-current-lang', newLang);
+            
+            // Troca a visibilidade dos elementos com atributo data-lang
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if (el.getAttribute('data-lang') === newLang) {
+                    el.style.display = 'block';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+            
+            // Atualiza o texto do botão
+            const btn = document.querySelector('.lang-btn');
+            btn.innerText = newLang === 'pt' ? 'PT / EN' : 'EN / PT';
+        }
+    </script>
 
 </body>
 </html>
