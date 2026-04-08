@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcelo Negri | Gameplay & Unity Programmer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+        header {
+            min-height: 100vh; /* Mudado para min-height para garantir que caiba tudo em telas menores */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), 
+                        url('https://github.com/mhcns.png'); /* Placeholder do El Hero */
+            background-size: cover;
+            background-position: center;
+            padding: 40px 20px; /* Aumentado o padding vertical */
+        }
+
+        /* --- NOVA CLASSE CSS PARA A FOTO DE PERFIL --- */
+        .profile-pic {
+            width: 150px; /* Tamanho da foto */
+            height: 150px;
+            border-radius: 50%; /* Torna a foto redonda */
+            border: 4px solid var(--accent-color); /* Borda azul clara */
+            object-fit: cover; /* Garante que a imagem não distorça */
+            margin-bottom: 20px; /* Espaço entre a foto e o nome */
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5); /* Efeito de brilho leve */
+        }
+
+        h1 { font-size: 3.5rem; margin-bottom: 0.5rem; color: var(--accent-color); }
+        .subtitle { font-size: 1.5rem; color: var(--text-dim); margin-bottom: 2rem; }
+
+        .social-links a {
+            color: var(--text-main);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover { color: var(--accent-color); }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
+
+        h2 { font-size: 2rem; margin-bottom: 40px; border-left: 4px solid var(--accent-color); padding-left: 15px; }
+
+        /* Grade de Projetos */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 1px solid #334155;
+        }
+
+        .project-card:hover { transform: translateY(-10px); }
+
+        .project-img { width: 100%; height: 180px; background: #334155; object-fit: cover; }
+
+        .project-info { padding: 20px; }
+        .project-info h3 { margin-bottom: 10px; color: var(--accent-color); }
+        .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+        .tag { background: #0ea5e9; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; }
+
+        /* Skills Section */
+        .skills-container { display: flex; flex-wrap: wrap; gap: 15px; }
+        .skill-item { background: var(--card-bg); padding: 10px 20px; border-radius: 8px; border: 1px solid var(--accent-color); }
+
+        footer { text-align: center; padding: 40px; color: var(--text-dim); font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>MARCELO NEGRI</h1>
+        <p class="subtitle">Gameplay / Unity Programmer</p>
+        <div class="social-links">
+            <a href="https://github.com/mhcns" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/marcelo-henrique-1833a9164/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://exupi.itch.io" target="_blank"><i class="fab fa-itch-io"></i></a>
+            <a href="mailto:marcelo.hcns@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Sobre Mim</h2>
+        <p style="font-size: 1.1rem; color: var(--text-dim);">
+            Desenvolvedor Unity focado em sistemas de <b>multiplayer</b> e mecânicas de gameplay. 
+            Experiência sólida na criação de sistemas escaláveis, validação server-side e sincronização de rede. 
+            Fluente em C# e focado em performance.
+        </p>
+    </div>
+
+    <div class="container">
+        <h2>Projetos em Destaque</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-info">
+                    <span class="tag">Profissional</span>
+                    <h3>EL HERO</h3>
+                    <p>Desenvolvimento focado em multiplayer, sistema de hit-detection server-side e modos de jogo (Hero Clash).</p>
+                    <div class="tags">
+                        <span class="tag">Unity</span> <span class="tag">C#</span> <span class="tag">Multiplayer</span>
+                    </div>
+                    <a href="https://www.instagram.com/el_herogg/" style="color: var(--accent-color); text-decoration: none;">Ver Detalhes →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-info">
+                    <span class="tag">College</span>
+                    <h3>O Resgate de Farya</h3>
+                    <p>Sistemas de gameplay, lógica de inimigos, Boss Fight, puzzles.</p>
+                    <div class="tags">
+                        <span class="tag">Unity</span> <span class="tag">Boss AI</span> <span class="tag">Gameplay</span>
+                    </div>
+                    <a href="https://exupi.itch.io/manamaue" target="_blank" style="color: var(--accent-color); text-decoration: none;">Jogar no Itch.io →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-info">
+                    <span class="tag">College</span>
+                    <h3>Magnetic Run</h3>
+                    <p>Programação de gameplay, level design e integração de áudio.</p>
+                    <div class="tags">
+                        <span class="tag">Unity</span> <span class="tag">Physics</span> <span class="tag">Audio</span>
+                    </div>
+                    <a href="https://exupi.itch.io/magnetic-run" target="_blank" style="color: var(--accent-color); text-decoration: none;">Jogar no Itch.io →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-info">
+                    <span class="tag">College</span>
+                    <h3>Manamauê</h3>
+                    <p>Sistemas de gameplay e lógica de Boss Fight.</p>
+                    <div class="tags">
+                        <span class="tag">Unity</span> <span class="tag">Boss AI</span> <span class="tag">Gameplay</span>
+                    </div>
+                    <a href="https://exupi.itch.io/manamaue" target="_blank" style="color: var(--accent-color); text-decoration: none;">Jogar no Itch.io →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Stack Técnica</h2>
+        <div class="skills-container">
+            <div class="skill-item">Unity (C#)</div>
+            <div class="skill-item">Unreal Engine</div>
+            <div class="skill-item">Multiplayer Sync</div>
+            <div class="skill-item">Git </div>
+            <div class="skill-item">FMOD & Audio Integration</div>
+            <div class="skill-item">UEFN</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Recife - PE, BR | +55 (81) 99593-8000</p>
+        <p>© 2024 Marcelo Negri - Desenvolvido para Game Devs</p>
+    </footer>
+
+</body>
+</html>
