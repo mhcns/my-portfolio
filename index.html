@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="pt-BR" data-current-lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marcelo Negri | Gameplay & Unity Programmer</title>
+    <title>Marcelo Negri | Unity Gameplay Engineer</title>
+    <meta name="description" content="Portfólio de Marcelo Negri, Unity Gameplay Engineer com experiência em gameplay multiplayer, networking e ferramentas em Unity/C#.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -81,7 +82,7 @@
 
         h2 { font-size: 2rem; margin-bottom: 40px; border-left: 4px solid var(--accent-color); padding-left: 15px; }
 
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 30px; }
 
         .project-card {
             background: var(--card-bg);
@@ -96,9 +97,13 @@
         .project-card:hover { transform: translateY(-10px); }
 
         .project-info { padding: 20px; flex-grow: 1; }
-        .project-info h3 { margin-bottom: 10px; color: var(--accent-color); }
+        .project-info h3 { margin-top: 8px; color: var(--accent-color); }
+        .project-role { margin-bottom: 10px; color: var(--text-dim); font-size: 0.9rem; }
+        .project-description { margin-bottom: 14px; }
+        .project-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+        .project-links a { color: var(--accent-color); text-underline-offset: 3px; }
         .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
-        .tag { background: #0ea5e9; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; color: white; }
+        .tag { background: #0ea5e9; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; color: var(--bg-color); }
 
         .skills-container { display: flex; flex-wrap: wrap; gap: 15px; }
         .skill-item { background: var(--card-bg); padding: 10px 20px; border-radius: 8px; border: 1px solid var(--accent-color); }
@@ -106,7 +111,8 @@
         footer { text-align: center; padding: 40px; color: var(--text-dim); font-size: 0.9rem; border-top: 1px solid #1e293b; }
 
         /* Lógica de exibição de idiomas */
-        [data-lang="en"] { display: none; }
+        [data-current-lang="pt"] [data-lang="en"],
+        [data-current-lang="en"] [data-lang="pt"] { display: none; }
 
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
@@ -114,17 +120,17 @@
         }
     </style>
 </head>
-<body data-current-lang="pt">
+<body>
 
     <div class="lang-switcher">
-        <button class="lang-btn" onclick="toggleLanguage()">PT / EN</button>
+        <button class="lang-btn" type="button" id="language-toggle" lang="en" aria-label="Read this portfolio in English">English</button>
     </div>
 
     <header>
         <img src="https://github.com/mhcns.png" alt="Marcelo Negri" class="profile-pic">
         <h1>MARCELO NEGRI</h1>
-        <p class="subtitle" data-lang="pt">Programador de Gameplay & Unity</p>
-        <p class="subtitle" data-lang="en">Gameplay & Unity Programmer</p>
+        <p class="subtitle" data-lang="pt">Unity Gameplay Engineer | Multiplayer, Networking e Ferramentas em C#</p>
+        <p class="subtitle" data-lang="en">Unity Gameplay Engineer | Multiplayer &amp; Networking | Unity/C# Tools</p>
         
         <div class="social-links">
             <a href="https://github.com/mhcns" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -139,14 +145,10 @@
         <h2 data-lang="en">About Me</h2>
         
         <p style="font-size: 1.1rem; color: var(--text-dim);" data-lang="pt">
-            Desenvolvedor Unity focado em sistemas de <b>multiplayer</b> e mecânicas de gameplay. 
-            Experiência sólida na criação de sistemas escaláveis, validação server-side e sincronização de rede. 
-            Fluente em C# e focado em performance. Baseado em Recife - PE.
+            Desenvolvo sistemas de gameplay em <strong>Unity e C#</strong>, com foco em mecânicas multiplayer e na arquitetura que permite evoluí-las. Na Moonite Games, trabalhei em combate online, sincronização de rede e fluxo de partidas em EL HERO. Na Neutech, desenvolvi ferramentas de captura automatizada e uma câmera de espectador configurável. Moro na região de Recife e tenho interesse em oportunidades remotas.
         </p>
         <p style="font-size: 1.1rem; color: var(--text-dim);" data-lang="en">
-            Unity Developer focused on <b>multiplayer</b> systems and gameplay mechanics. 
-            Solid experience building scalable systems, server-side validation, and network synchronization. 
-            Fluent in C# with a focus on performance. Based in Recife - Brazil.
+            I build gameplay systems in <strong>Unity and C#</strong>, with a focus on multiplayer mechanics and architecture that supports iteration. At Moonite Games, I worked on online combat, network synchronization, and match flow for EL HERO. At Neutech, I built automated capture tools and a configurable spectator camera. I’m based near Recife, Brazil, and open to remote opportunities.
         </p>
     </div>
 
@@ -160,27 +162,56 @@
                     <span class="tag" data-lang="pt">Profissional</span>
                     <span class="tag" data-lang="en">Professional</span>
                     <h3>EL HERO</h3>
-                    <p data-lang="pt">Desenvolvimento focado em multiplayer, sistema de hit-detection server-side e modos de jogo (Hero Clash).</p>
-                    <p data-lang="en">Development focused on multiplayer, server-side hit-detection, and game modes (Hero Clash).</p>
+                    <p class="project-role" data-lang="pt">Programador de gameplay em Unity · Moonite Games · mai. 2024 – dez. 2025</p>
+                    <p class="project-role" data-lang="en">Unity Gameplay Programmer · Moonite Games · May 2024 – Dec 2025</p>
+                    <p class="project-description" data-lang="pt">Implementei detecção de acertos no servidor com compensação de latência e a lógica de gameplay do modo Hero Clash, incluindo regras, condições de vitória e fluxo de partidas. Também trabalhei na câmera de espectador e na manutenção dos sistemas de sincronização.</p>
+                    <p class="project-description" data-lang="en">I implemented server-authoritative hit detection with latency compensation and the gameplay logic for the Hero Clash deathmatch mode, including rules, win conditions, and match flow. I also worked on the spectator camera and maintained network synchronization.</p>
                     <div class="tags">
                         <span class="tag">Unity</span> <span class="tag">C#</span> <span class="tag">Multiplayer</span>
                     </div>
-                    <a href="https://www.instagram.com/el_herogg/" target="_blank" style="color: var(--accent-color); text-decoration: none;" data-lang="pt">Ver Detalhes →</a>
-                    <a href="https://www.instagram.com/el_herogg/" target="_blank" style="color: var(--accent-color); text-decoration: none;" data-lang="en">View Details →</a>
+                    <div class="project-links">
+                        <a href="https://elhero.gg/" target="_blank" rel="noopener" data-lang="pt">Site oficial</a>
+                        <a href="https://elhero.gg/" target="_blank" rel="noopener" data-lang="en">Official site</a>
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7424476387530665984/" target="_blank" rel="noopener" data-lang="pt">Meu relato técnico</a>
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7424476387530665984/" target="_blank" rel="noopener" data-lang="en">My technical write-up</a>
+                    </div>
                 </div>
             </div>
 
             <div class="project-card">
                 <div class="project-info">
-                    <span class="tag" data-lang="pt">Acadêmico / Parceria</span>
-                    <span class="tag" data-lang="en">College / Partnership</span>
-                    <h3>O Resgate de Farya</h3>
-                    <p data-lang="pt">Sistemas de gameplay, lógica de inimigos, Boss Fight e puzzles em parceria com VIU CINE.</p>
-                    <p data-lang="en">Gameplay systems, enemy logic, Boss Fights, and puzzles in partnership with VIU CINE.</p>
+                    <span class="tag" data-lang="pt">Profissional</span>
+                    <span class="tag" data-lang="en">Professional</span>
+                    <h3 data-lang="pt">Neutech · Ferramentas em Unity</h3>
+                    <h3 data-lang="en">Neutech · Unity Tools</h3>
+                    <p class="project-role" data-lang="pt">Jr. Unity Engineer · jul. 2026 – nov. 2026</p>
+                    <p class="project-role" data-lang="en">Jr. Unity Engineer · Jul 2026 – Nov 2026</p>
+                    <p class="project-description" data-lang="pt">Desenvolvi ferramentas em Unity/C# para automatizar a captura de imagens e vídeos. Implementei uma câmera de espectador com foco configurável e integrei as ferramentas a um projeto Unity existente.</p>
+                    <p class="project-description" data-lang="en">I built Unity/C# tools to automate screenshot and video capture. I implemented a spectator camera with configurable focus and integrated the tools into an existing Unity project.</p>
                     <div class="tags">
-                        <span class="tag">Unity</span> <span class="tag">Boss AI</span> <span class="tag">Gameplay</span>
+                        <span class="tag">Unity</span> <span class="tag">C#</span>
+                        <span class="tag" data-lang="pt">Automação de captura</span>
+                        <span class="tag" data-lang="en">Capture Automation</span>
                     </div>
-                    <a href="https://oresgatedefarya.itch.io/o-resgate-de-farya" target="_blank" style="color: var(--accent-color); text-decoration: none;">Itch.io →</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-info">
+                    <span class="tag" data-lang="pt">Projeto em equipe</span>
+                    <span class="tag" data-lang="en">Team Project</span>
+                    <h3>O Resgate de Fárya</h3>
+                    <p class="project-role" data-lang="pt">Desenvolvedor Unity voluntário · Combogó UNICAP · set. 2022 – set. 2023</p>
+                    <p class="project-role" data-lang="en">Volunteer Unity Developer · Combogó UNICAP · Sep 2022 – Sep 2023</p>
+                    <p class="project-description" data-lang="pt">Em parceria com a VIU CINE, implementei puzzles, checkpoints, comportamento de inimigos e fluxos de interface. Também integrei animações, áudio e diálogos ao gameplay.</p>
+                    <p class="project-description" data-lang="en">On this collaboration with VIU CINE, I implemented puzzles, checkpoints, enemy behavior, and UI flows. I also integrated animations, audio, and dialogue into gameplay.</p>
+                    <div class="tags">
+                        <span class="tag">Unity</span> <span class="tag">C#</span> <span class="tag">Gameplay</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://oresgatedefarya.itch.io/o-resgate-de-farya" target="_blank" rel="noopener" data-lang="pt">Ver no itch.io</a>
+                        <a href="https://oresgatedefarya.itch.io/o-resgate-de-farya" target="_blank" rel="noopener" data-lang="en">View on itch.io</a>
+                    </div>
                 </div>
             </div>
 
@@ -189,12 +220,30 @@
                     <span class="tag" data-lang="pt">Acadêmico</span>
                     <span class="tag" data-lang="en">College Project</span>
                     <h3>Magnetic Run</h3>
-                    <p data-lang="pt">Programação de gameplay baseada em física, level design e integração de áudio.</p>
-                    <p data-lang="en">Physics-based gameplay programming, level design, and audio integration.</p>
+                    <p class="project-description" data-lang="pt">Programei mecânicas de gameplay baseadas em física e trabalhei no design de fases, na interface e na integração de áudio.</p>
+                    <p class="project-description" data-lang="en">I programmed physics-based gameplay mechanics and worked on level design, UI, and audio integration.</p>
                     <div class="tags">
-                        <span class="tag">Unity</span> <span class="tag">Physics</span> <span class="tag">Audio</span>
+                        <span class="tag">Unity</span> <span class="tag">Gameplay</span>
                     </div>
-                    <a href="https://exupi.itch.io/magnetic-run" target="_blank" style="color: var(--accent-color); text-decoration: none;">Itch.io →</a>
+                    <div class="project-links">
+                        <a href="https://exupi.itch.io/magnetic-run" target="_blank" rel="noopener" data-lang="pt">Ver no itch.io</a>
+                        <a href="https://exupi.itch.io/magnetic-run" target="_blank" rel="noopener" data-lang="en">View on itch.io</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Manamauê</h3>
+                    <p class="project-description" data-lang="pt">Trabalhei nos sistemas de gameplay, na lógica do chefe e no design de fases, além de integrar efeitos sonoros.</p>
+                    <p class="project-description" data-lang="en">I worked on gameplay systems, boss logic, and level design, and integrated sound effects.</p>
+                    <div class="tags">
+                        <span class="tag">Gameplay</span> <span class="tag">Level Design</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://exupi.itch.io/manamaue" target="_blank" rel="noopener" data-lang="pt">Ver no itch.io</a>
+                        <a href="https://exupi.itch.io/manamaue" target="_blank" rel="noopener" data-lang="en">View on itch.io</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -205,11 +254,19 @@
         <h2 data-lang="en">Technical Stack</h2>
         <div class="skills-container">
             <div class="skill-item">Unity (C#)</div>
-            <div class="skill-item">Unreal Engine</div>
-            <div class="skill-item">Multiplayer Sync</div>
+            <div class="skill-item" data-lang="pt">Arquitetura de gameplay</div>
+            <div class="skill-item" data-lang="en">Gameplay Architecture</div>
+            <div class="skill-item" data-lang="pt">Sincronização de rede</div>
+            <div class="skill-item" data-lang="en">Network Synchronization</div>
+            <div class="skill-item" data-lang="pt">Validação no servidor</div>
+            <div class="skill-item" data-lang="en">Server-Side Validation</div>
+            <div class="skill-item" data-lang="pt">Ferramentas e automação em Unity</div>
+            <div class="skill-item" data-lang="en">Unity Tools &amp; Automation</div>
             <div class="skill-item">Git</div>
             <div class="skill-item">FMOD</div>
             <div class="skill-item">UEFN</div>
+            <div class="skill-item" data-lang="pt">Unreal Engine (básico)</div>
+            <div class="skill-item" data-lang="en">Unreal Engine (Basic)</div>
         </div>
     </div>
 
@@ -220,26 +277,31 @@
     </footer>
 
     <script>
-        function toggleLanguage() {
-            const body = document.body;
-            const currentLang = body.getAttribute('data-current-lang');
-            const newLang = currentLang === 'pt' ? 'en' : 'pt';
-            
-            body.setAttribute('data-current-lang', newLang);
-            
-            // Troca a visibilidade dos elementos com atributo data-lang
-            document.querySelectorAll('[data-lang]').forEach(el => {
-                if (el.getAttribute('data-lang') === newLang) {
-                    el.style.display = 'block';
-                } else {
-                    el.style.display = 'none';
-                }
-            });
-            
-            // Atualiza o texto do botão
-            const btn = document.querySelector('.lang-btn');
-            btn.innerText = newLang === 'pt' ? 'PT / EN' : 'EN / PT';
+        const languageToggle = document.getElementById('language-toggle');
+        const page = document.documentElement;
+
+        function setLanguage(language) {
+            const isEnglish = language === 'en';
+            page.dataset.currentLang = language;
+            page.lang = isEnglish ? 'en' : 'pt-BR';
+            languageToggle.lang = isEnglish ? 'pt-BR' : 'en';
+            languageToggle.textContent = isEnglish ? 'Português' : 'English';
+            languageToggle.setAttribute('aria-label', isEnglish ? 'Ler este portfólio em português' : 'Read this portfolio in English');
         }
+
+        setLanguage(new URLSearchParams(window.location.search).get('lang') === 'en' ? 'en' : 'pt');
+
+        languageToggle.addEventListener('click', () => {
+            const language = page.dataset.currentLang === 'pt' ? 'en' : 'pt';
+            const url = new URL(window.location.href);
+            if (language === 'en') {
+                url.searchParams.set('lang', 'en');
+            } else {
+                url.searchParams.delete('lang');
+            }
+            setLanguage(language);
+            window.history.replaceState(null, '', url);
+        });
     </script>
 
 </body>
